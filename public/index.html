@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTP LAND WEBPAGE</title>
+  <link rel="stylesheet" href="./style.css?v=2" />
+  <link rel="icon" href="./favicon.png" />
+</head>
+
+<body>
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <img src="./logo-terra.png" alt="Logo" class="navbar-logo" onerror="this.style.display = 'none'" />
+    </div>
+    <div class="navbar-center">
+      <span class="navbar-title">Elegant Living Affordable For All</span>
+    </div>
+    <div class="navbar-right">
+      <button class="btn-login" id="btn-login">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        Login
+      </button>
+
+      <!-- Profile button — shown after login -->
+      <button class="btn-profile" id="btn-profile">
+        <span class="btn-profile-avatar" id="btn-profile-avatar">A</span>
+        <span id="btn-profile-name">Admin</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ VIEWPORT ═══ -->
+  <div id="viewport">
+    <img src="./src/compass_img.svg" class="compus-img-main" />
+    <div id="svg-container">
+      <!-- SVG will be injected here as inline SVG -->
+    </div>
+  </div>
+
+
+<!-- ========about us button===========  -->
+
+<div class="about-float-btn" id="btn-about-us">
+  <div class="icon">
+    <!-- ID Card Icon -->
+    <svg viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="6" width="18" height="12" rx="2" fill="white"/>
+      <circle cx="9" cy="11" r="2" fill="#35b39d"/>
+      <path d="M7 15c1-1.5 3-1.5 4 0" stroke="#35b39d" stroke-width="1.4" fill="none"/>
+      <line x1="14" y1="10" x2="18" y2="10" stroke="#35b39d" stroke-width="1.4"/>
+      <line x1="14" y1="13" x2="18" y2="13" stroke="#35b39d" stroke-width="1.4"/>
+    </svg>
+  </div>
+  <span>About Us</span>
+</div>
+
+
+  <!-- ═══ TOOLTIP ═══ -->
+  <div id="svg-tooltip"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <!-- Logo Image -->
+    <img src="./logo-terra.png" alt="Logo" class="logo" />
+
+    <!-- Timeline Progress Bar -->
+    <div class="timeline-track">
+      <div class="timeline-progress" id="progress"></div>
+    </div>
+
+    <!-- Percentage -->
+    <div class="percentage" id="percentage">0%</div>
+  </div>
+
+  <!-- ═══ LOADING ═══ -->
+  <div id="loading" style="display: none">
+    <div class="spinner"></div>
+    Loading Land…
+  </div>
+
+  <!-- ═══ TOOLBAR — bottom left ═══ -->
+  <div class="toolbar">
+    <button id="btn-zoom-in" title="Zoom In">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <line x1="11" y1="8" x2="11" y2="14" />
+        <line x1="8" y1="11" x2="14" y2="11" />
+      </svg>
+      Zoom In
+    </button>
+    <button id="btn-zoom-out" title="Zoom Out">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <line x1="8" y1="11" x2="14" y2="11" />
+      </svg>
+      Zoom Out
+    </button>
+    <button id="btn-fit" title="Fit to Screen">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+      </svg>
+      Fit
+    </button>
+  </div>
+
+  <!-- ═══ ZOOM BADGE ═══ -->
+  <div id="zoom-badge">100 %</div>
+
+  <!-- ═══ TOAST ═══ -->
+  <div id="toast">🖱 Scroll to zoom · Drag to pan</div>
+
+  <!-- ═══ FLOATING ACTION BUTTON — Dashboard only ═══ -->
+  <div class="fab-wrap" id="fab-wrap">
+    <button class="fab-main" id="btn-dashboard" title="Dashboard & Reports" style="display: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+      </svg>
+      <span class="fab-tooltip">Dashboard & Reports</span>
+    </button>
+  </div>
+
+  <!-- ═══ DASHBOARD POPUP ═══ -->
+  <div id="dashboard-popup" class="dash-overlay">
+    <div class="dash-card">
+      <!-- Header -->
+      <div class="dash-header">
+        <div class="dash-header-left">
+          <span class="dash-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+            </svg>
+          </span>
+          <div>
+            <h2 class="dash-title">Dashboard & Reports</h2>
+            <p class="dash-sub">Plot Sales Overview</p>
+          </div>
+        </div>
+        <button class="dash-close" id="dash-close">✕</button>
+      </div>
+
+      <!-- Status Cards -->
+      <div class="dash-body">
+        <div class="dash-section-label">Plot Status Summary</div>
+
+        <div class="dash-stats">
+          <div class="stat-card" style="background: #f0f4ff">
+            <div class="stat-icon">📊</div>
+            <div class="stat-count" id="stat-total">0</div>
+            <div class="stat-label">Total Plots</div>
+          </div>
+
+          <div class="stat-card avail">
+            <div class="stat-icon">✅</div>
+            <div class="stat-count" id="stat-available">6</div>
+            <div class="stat-label">Available</div>
+          </div>
+
+          <div class="stat-card sold">
+            <div class="stat-icon">🏛</div>
+            <div class="stat-count" id="stat-booked">12</div>
+            <div class="stat-label">Booked</div>
+          </div>
+
+          <div class="stat-card inprog">
+            <div class="stat-icon">🔖</div>
+            <div class="stat-count" id="stat-reserved">7</div>
+            <div class="stat-label">Reserved</div>
+          </div>
+          <div class="stat-card sold">
+            <div class="stat-icon">📛</div>
+            <div class="stat-count" id="stat-booked-registered">7</div>
+            <div class="stat-label">Registration Done</div>
+          </div>
+        </div>
+
+        <!-- ══ DASHBOARD TABS ══ -->
+        <div class="dtab-bar">
+          <button class="dtab active" id="dtab-customer" onclick="switchDashTab('customer')">
+            👤 Customer Details
+          </button>
+          <button class="dtab" id="dtab-mediator" onclick="switchDashTab('mediator')">
+            🤝 Mediator
+          </button>
+          <button class="dtab" id="dtab-plot" onclick="switchDashTab('plot')">
+            📐 Plot details
+          </button>
+        </div>
+
+        <!-- ══ TAB PANEL: CUSTOMER DETAILS ══ -->
+        <div class="dtab-panel active" id="dpanel-customer">
+          <div class="dtab-toolbar">
+            <input type="text" class="dtab-search" id="cust-search" placeholder="🔍 Search customers…"
+              oninput="filterDashTable('customer')" />
+            <div class="clouser-date-filter">
+              <span>Closure Date: </span>
+              <input type="date" class="dtab-search" id="cust-date-filter" oninput="filterDashTable('customer')" />
+            </div>
+            <div class="clouser-date-filter">
+              <span>Follow-up Date: </span>
+              <input type="date" class="dtab-search" id="cust-followup-filter" oninput="filterDashTable('customer')" />
+            </div>
+            <select class="dtab-filter" id="cust-status-filter" onchange="filterDashTable('customer')">
+              <option value="">All Status</option>
+              <option value="registered">🏛 Registration done</option>
+              <option value="booked">🔖 Booked</option>
+              <option value="reserved">🔖 Reserved</option>
+            </select>
+            <button class="dtab-export-btn" onclick="exportToExcel('customer')">
+              ⬇ Export Excel
+            </button>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table" id="customerTable">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Customer Name</th>
+                  <th>Phone</th>
+                  <th>Plot</th>
+                  <th>Plot Price / Cent</th>
+                  <th>Mediator</th>
+                  <th>Commission</th>
+                  <th>Closure Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="customerTableBody">
+                <tr id="noCustomerRow">
+                  <td colspan="11" style="
+                        text-align: center;
+                        color: #aaa;
+                        padding: 28px 0;
+                        font-size: 13px;
+                      ">
+                    No customers registered yet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ══ TAB PANEL: MEDIATOR ══ -->
+        <div class="dtab-panel" id="dpanel-mediator">
+          <div class="dtab-toolbar">
+            <input type="text" class="dtab-search" id="med-search" placeholder="🔍 Search mediators…"
+              oninput="filterDashTable('mediator')" />
+            <button class="dtab-export-btn" onclick="exportToExcel('mediator')">
+              ⬇ Export Excel
+            </button>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table" id="mediatorDashTable">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Mediator Name</th>
+                  <th>Phone Number</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody id="mediatorDashBody">
+                <tr>
+                  <td colspan="4" style="
+                        text-align: center;
+                        color: #aaa;
+                        padding: 28px 0;
+                        font-size: 13px;
+                      ">
+                    No mediators found.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ══ TAB PANEL: PLOT PRICE ══ -->
+        <div class="dtab-panel" id="dpanel-plot">
+          <div class="dtab-toolbar">
+            <input type="text" class="dtab-search" id="plot-search" placeholder="🔍 Search plots…"
+              oninput="filterDashTable('plot')" />
+            <select class="dtab-filter" id="plot-status-filter" onchange="filterDashTable('plot')">
+              <option value="">All Status</option>
+              <option value="available">Available</option>
+              <option value="booked">Booked</option>
+              <option value="reserved">Reserved</option>
+              <option value="registration done">Registration Done</option>
+            </select>
+            <button class="dtab-export-btn" onclick="exportToExcel('plot')">
+              ⬇ Export Excel
+            </button>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table" id="plotDashTable">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Plot Number</th>
+                  <th>Plot Price /Cent (₹)</th>
+
+                  <th>Sq. Feet</th>
+                  <th>Plot Facing</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="plotDashBody">
+                <tr>
+                  <td colspan="8" style="
+                        text-align: center;
+                        color: #aaa;
+                        padding: 28px 0;
+                        font-size: 13px;
+                      ">
+                    No plot data found.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /dash-body -->
+
+      <!-- ══ INSTALLMENT MODAL ══ -->
+      <div id="inst-modal" class="inst-modal-overlay">
+        <div class="inst-modal-card">
+          <div class="inst-modal-header">
+            <div>
+              <h3 class="inst-modal-title">👤 Customer Details</h3>
+              <p class="inst-modal-sub" id="inst-modal-customer"></p>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <button class="inst-export-btn" id="inst-export-btn" title="Export to Excel">
+                ⬇ Export Excel
+              </button>
+              <button class="inst-modal-close" id="inst-modal-close">✕</button>
+            </div>
+          </div>
+          <div class="inst-modal-body">
+            <!-- Dynamically rendered customer detail sections -->
+            <div id="inst-modal-info"></div>
+
+            <!-- Installments section label -->
+            <div class="imd-slabel">💰 Payment</div>
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>S.No.</th>
+                    <th>Amount Received (₹)</th>
+                    <th>Date Received</th>
+                    <th>Next Follow-up</th>
+                  </tr>
+                </thead>
+                <tbody id="inst-modal-tbody"></tbody>
+              </table>
+            </div>
+            <div class="inst-modal-total" id="inst-modal-total"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /dash-card -->
+  </div>
+  <!-- /dashboard-popup -->
+
+  <!-- ═══ POPUP ═══ -->
+  <!-- ═══ POPUP ═══ -->
+  <div id="popup" class="popup-overlay">
+    <div class="popup-card">
+      <!-- HEADER -->
+      <div class="ph">
+        <div class="ph-top">
+          <h3 class="ph-title" id="phTitle" style="margin-bottom: 0">
+            Plot Details
+          </h3>
+          <span class="ph-badge" id="phBadge">Plot</span>
+          <button class="btclose" id="btnClose">✕</button>
+        </div>
+        <div class="ptabs">
+          <button class="ptab active" id="tab-plot" onclick="switchTab('plot')">
+            📐 Plot Details
+          </button>
+          <button class="ptab" id="tab-customer" onclick="switchTab('customer')">
+            👤 Customer Details
+          </button>
+          <button class="ptab" id="tab-mediator" onclick="switchTab('mediator')">
+            🤝 Mediator
+          </button>
+        </div>
+      </div>
+
+      <div class="pbody">
+        <!-- ══ TAB: PLOT DETAILS ══ -->
+        <!-- ══ TAB: PLOT DETAILS ══ -->
+        <div class="tpanel active" id="panel-plot">
+          <div class="slabel">Plot Information</div>
+
+          <div class="r2 mb">
+            <div class="fg">
+              <label>Plot Number</label>
+              <input type="text" id="plotNumber" readonly />
+            </div>
+            <div class="fg">
+              <label>Plot Price / Cent</label>
+              <div class="rupee-wrap">
+                <span class="rsym">₹</span>
+                <input type="text" id="plotPrice" class="pi" placeholder="0" inputmode="decimal"
+                  style="margin-bottom: 0" />
+              </div>
+            </div>
+          </div>
+
+          <div class="r3 mb">
+            <div class="fg">
+              <label>Cent</label>
+              <input type="text" id="plotCent" placeholder="Auto or manual" inputmode="decimal" />
+            </div>
+            <div class="fg">
+              <label>Sq. Feet</label>
+              <input type="text" id="plotSqft" placeholder="Auto or manual" inputmode="decimal" />
+            </div>
+          </div>
+
+          <div class="fg mb">
+            <label>Plot Facing</label>
+            <select id="plotFacing">
+              <option value="">— Select Facing —</option>
+              <option value="East">East</option>
+              <option value="North">North</option>
+              <option value="West">West</option>
+              <option value="South">South</option>
+              <option value="NE">North-East</option>
+              <option value="NW">North-West</option>
+              <option value="SE">South-East</option>
+              <option value="SW">South-West</option>
+            </select>
+          </div>
+
+          <!-- Plot Image Section -->
+
+          <div class="slabel">Plot Image</div>
+          <div class="plot-admin-img-wrap">
+            <img src="./src/compass_img.svg" class="compus-img-admin" />
+            <img id="adminPlotImg" src="" alt="Plot Image" class="admin-plot-img" onerror="
+                  this.style.display = 'none';
+                  document.getElementById('adminPlotImgErr').style.display =
+                    'flex';
+                " />
+            <div id="adminPlotImgErr" class="admin-plot-img-err" style="display: none">
+              <span>🏗️</span>
+              <p>No image available for this plot</p>
+            </div>
+          </div>
+
+          <button class="btsave" id="btnSavePlot">
+            💾 Save Plot Details
+          </button>
+        </div>
+
+        <!-- ══ TAB: CUSTOMER DETAILS ══ -->
+        <!-- ══ TAB: CUSTOMER DETAILS ══ -->
+        <div class="tpanel" id="panel-customer">
+          <div class="slabel">Customer Information</div>
+          <div class="r2 mb">
+            <div class="fg">
+              <label>Customer Name</label>
+              <input type="text" id="custName" placeholder="Full name…" />
+            </div>
+            <div class="fg">
+              <label>Customer Phone Number</label>
+              <input type="tel" id="custPhone" placeholder="Mobile number…" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="fg mb">
+            <div class="med-cust-row">
+              <!-- Mediator Select -->
+              <div class="med-cust-sel">
+                <label>Mediator Name</label>
+                <select id="mediatorSel">
+                  <option value="">— Select Mediator —</option>
+                  <option value="other">Other (type below)…</option>
+                </select>
+                <input type="text" id="mediatorOther" placeholder="Enter mediator name…"
+                  style="display: none; margin-top: 7px" />
+              </div>
+
+              <!-- Commission Amount -->
+              <div class="med-cust-amt">
+                <label>Commission (₹)</label>
+                <div class="rupee-wrap">
+                  <span class="rsym">₹</span>
+                  <input type="text" id="custMedAmount" class="pi" placeholder="0" inputmode="decimal"
+                    title="Auto-filled from Mediator tab" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="pdiv" />
+
+          <div class="slabel">Booking Price</div>
+          <div class="brow mb">
+            <div class="fg">
+              <label>Plot Price / Cent</label>
+              <div class="rupee-wrap">
+                <span class="rsym">₹</span>
+                <input type="text" id="bookingPrice" placeholder="Enter amount…" inputmode="decimal" />
+              </div>
+            </div>
+            <label class="chklbl" title="Auto-fill from plot price" style="margin-bottom: 0">
+              <input type="checkbox" id="chkPlotPrice" />
+              <span id="priceBadgeAmt"></span>
+            </label>
+          </div>
+
+          <hr class="pdiv" />
+
+          <div class="slabel">💰 Payment Installments</div>
+          <div class="ilist" id="instList"></div>
+          <button class="btnadd" id="btnAddInst">＋ Add Payment Entry</button>
+
+          <div class="cstrip">
+            <div class="fg">
+              <label>Expected Closure Date</label>
+              <input type="date" id="closureDate" />
+            </div>
+          </div>
+
+          <!-- Replace this entire section in Customer tab -->
+          <hr class="pdiv" />
+
+          <div class="slabel">Plot Status</div>
+          <div class="status-radio-wrap">
+            <label class="sradio-label" id="sradio-booked">
+              <input type="radio" name="plotStatus" value="booked" id="rdoBooked" />
+              <span class="sradio-box">
+                <span class="sradio-dot"></span>
+              </span>
+              <span class="sradio-content">
+                <span class="sradio-text">
+                  <span class="sradio-title">Booked</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="sradio-label" id="sradio-reserved">
+              <input type="radio" name="plotStatus" value="reserved" id="rdoReserved" />
+              <span class="sradio-box">
+                <span class="sradio-dot"></span>
+              </span>
+              <span class="sradio-content">
+                <span class="sradio-text">
+                  <span class="sradio-title">Reserved</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="sradio-label" id="sradio-registered">
+              <input type="radio" name="plotStatus" value="registered" id="rdoRegistered" />
+              <span class="sradio-box">
+                <span class="sradio-dot"></span>
+              </span>
+              <span class="sradio-content">
+                <span class="sradio-text">
+                  <span class="sradio-title">Registration Done</span>
+                </span>
+              </span>
+            </label>
+
+            <!-- ✅ NEW — Available option -->
+            <label class="sradio-label" id="sradio-available">
+              <input type="radio" name="plotStatus" value="available" id="rdoAvailable" />
+              <span class="sradio-box">
+                <span class="sradio-dot"></span>
+              </span>
+              <span class="sradio-content">
+                <span class="sradio-text">
+                  <span class="sradio-title">Available</span>
+                </span>
+              </span>
+            </label>
+          </div>
+
+          <button class="btsave" id="btnSaveCust">
+            💾 Save Customer Details
+          </button>
+        </div>
+
+        <!-- ══ TAB: MEDIATOR DETAILS ══ -->
+        <div class="tpanel" id="panel-mediator">
+          <div class="slabel">Mediator Information</div>
+
+          <!-- Input Section -->
+          <div class="med-input-section">
+            <div class="r3 mb">
+              <div class="fg">
+                <label>Mediator Name</label>
+                <input type="text" id="medName" placeholder="Enter name…" list="med-name-list" />
+                <!-- <datalist id="med-name-list"></datalist> -->
+              </div>
+              <div class="fg">
+                <label>Mediator Phone</label>
+                <input type="tel" id="medPhone" placeholder="Mobile number…" maxlength="10" />
+              </div>
+              <div class="fg">
+                <label>Location</label>
+                <input type="text" id="medLocation" placeholder="Enter location…" />
+              </div>
+            </div>
+
+            <button class="btnadd" id="btnAddMedRow">
+              ＋ Add Mediator Entry
+            </button>
+          </div>
+
+          <hr class="pdiv" />
+
+          <!-- Table Section -->
+          <div class="slabel">Mediator Records</div>
+
+          <div class="med-table-wrap">
+            <table class="med-table" id="medTable">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Mediator Name</th>
+                  <th>Phone Number</th>
+                  <th>Location</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="medTableBody">
+                <tr class="med-empty-row" id="medEmptyRow">
+                  <td colspan="5">
+                    <div class="med-table-empty">
+                      <span>🤝</span>
+                      <p>No mediator entries yet. Add one above.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Summary -->
+          <div class="med-summary" id="medSummary" style="display: none">
+            <div class="med-sum-row">
+              <span class="med-sum-label">Total Mediators</span>
+              <span class="med-sum-val" id="medSumCount">0</span>
+            </div>
+          </div>
+
+          <button class="btsave" id="btnSaveMed">
+            💾 Save Mediator Details
+          </button>
+        </div>
+      </div>
+      <!-- /pbody -->
+    </div>
+    <!-- /popup-card -->
+  </div>
+  <!-- /popup -->
+
+  <!-- /popup -->
+
+  <!-- ═══ LOGIN MODAL ═══ -->
+  <div id="login-modal" class="login-overlay">
+    <div class="login-card">
+      <button class="login-close" id="login-close">✕</button>
+
+      <div class="login-header">
+        <div class="login-icon">🔐</div>
+        <h2 class="login-title">Welcome Back</h2>
+        <p class="login-sub">Sign in to manage plots</p>
+      </div>
+
+      <div class="login-body">
+        <div class="login-error" id="login-error">
+          ⚠️ Invalid username or password
+        </div>
+
+        <div class="lfg">
+          <label>Username</label>
+          <div class="linput-wrap">
+            <span class="linput-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <input type="text" id="login-username" class="linput" placeholder="Enter username…"
+              autocomplete="username" />
+          </div>
+        </div>
+
+        <div class="lfg">
+          <label>Password</label>
+          <div class="linput-wrap">
+            <span class="linput-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </span>
+            <input type="password" id="login-password" class="linput" placeholder="Enter password…"
+              autocomplete="current-password" />
+            <button class="linput-eye" id="toggle-password" title="Show/Hide password" type="button">
+              <svg id="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11
+                                     8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="login-btn" id="login-submit">
+          <span id="login-btn-text">Login</span>
+          <span id="login-spinner" class="login-spin" style="display: none">⟳</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PROFILE DROPDOWN ═══ -->
+  <div id="profile-dropdown" class="profile-dropdown">
+    <div class="profile-info">
+      <div class="profile-avatar" id="profile-avatar">A</div>
+      <div>
+        <div class="profile-name" id="profile-name">Admin</div>
+        <div class="profile-role">Plot Manager</div>
+      </div>
+    </div>
+    <hr class="profile-divider" />
+    <button class="profile-logout" id="btn-logout">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </svg>
+      Logout
+    </button>
+  </div>
+
+  <!-- profile -->
+  <div class="plot-legend">
+    <div class="legend-item">
+      <span class="legend-color available"></span>
+      <span>Available</span>
+    </div>
+
+    <div class="legend-item">
+      <span class="legend-color sold"></span>
+      <span>Booked</span>
+    </div>
+
+    <div class="legend-item">
+      <span class="legend-color reserved"></span>
+      <span>Reserved</span>
+    </div>
+  </div>
+
+
+<!-- ═══ CUSTOMER PLOT IMAGE POPUP ═══ -->
+<div id="plot-img-popup" class="plot-img-overlay">
+  <div class="plot-img-card">
+
+    <!-- HEADER -->
+    <div class="plot-img-header">
+      <h3 class="plot-img-title" id="plot-img-title">Plot 45</h3>
+      <button class="plot-img-close" id="plot-img-close">✕</button>
+    </div>
+
+    <!-- TOP STAT CARDS ROW -->
+    <div class="plot-stat-bar">
+      <div class="plot-stat-card">
+        <div class="plot-stat-icon">📐</div>
+        <div>
+          <div class="plot-stat-label">Area</div>
+          <div class="plot-stat-val" id="pid-sqft">—</div>
+        </div>
+      </div>
+      <div class="plot-stat-card">
+        <div class="plot-stat-icon">📏</div>
+        <div>
+          <div class="plot-stat-label">Cent</div>
+          <div class="plot-stat-val" id="pid-cent">—</div>
+        </div>
+      </div>
+      <div class="plot-stat-card">
+        <div class="plot-stat-icon">💰</div>
+        <div>
+          <div class="plot-stat-label">Price</div>
+          <div class="plot-stat-val" id="pid-price">—</div>
+        </div>
+      </div>
+      <div class="plot-stat-card">
+        <div class="plot-stat-icon">🧭</div>
+        <div>
+          <div class="plot-stat-label">Facing</div>
+          <div class="plot-stat-val" id="pid-facing">—</div>
+        </div>
+      </div>
+      <div class="plot-stat-card">
+        <div class="plot-stat-icon">📋</div>
+        <div>
+          <div class="plot-stat-label">Status</div>
+          <div class="plot-stat-val" id="pid-status">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BODY: two columns -->
+    <div class="plot-img-main-body">
+
+      <!-- LEFT: Selected Plot Image -->
+      <div class="plot-img-left">
+        <div class="plot-img-section-title">
+          <span>Selected Plot</span>
+          <span class="plot-img-section-line"></span>
+        </div>
+        <div class="plot-img-frame">
+          <img src="./src/compass_img.svg" class="compus-img-admin" />
+          <img id="plot-img-el" src="" alt="Plot Image" class="plot-img-main"
+            onerror="this.style.display='none';document.getElementById('plot-img-err').style.display='flex';" />
+          <div id="plot-img-err" class="plot-img-err" style="display:none;">
+            <span>🏗️</span>
+            <p>Image not available</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Enquiry Form -->
+      <div class="plot-enq-right">
+        <div class="plot-img-section-title">
+          <span>Enquiry Form</span>
+          <span class="plot-img-section-line"></span>
+        </div>
+        <div class="plot-enq-form">
+          <div class="plot-enq-field">
+            <label>Name</label>
+            <input type="text" id="enq-name" placeholder="Enter your Name" />
+          </div>
+          <div class="plot-enq-field">
+            <label>Mobile Number</label>
+            <input type="tel" id="enq-phone" placeholder="Enter your Mobile no" maxlength="10" />
+          </div>
+          <div class="plot-enq-field">
+            <label>Address</label>
+            <textarea id="enq-address" placeholder="Enter Your Address" rows="4"></textarea>
+          </div>
+          <button class="plot-enq-submit" id="enq-submit-btn">SUBMIT</button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- /main body -->
+
+  </div>
+</div>
+
+
+ 
+<!-- ═══ ABOUT US MODAL ═══ -->
+<div id="about-modal" class="about-overlay">
+  <div class="about-card">
+ 
+    <!-- Header -->
+    <div class="about-header">
+      <h2 class="about-header-title">About Us</h2>
+      <button class="about-close" id="about-close">✕</button>
+    </div>
+ 
+    <!-- Body -->
+    <div class="about-body">
+ 
+      <!-- LEFT: Video -->
+      <div class="about-left">
+        <video
+          class="about-video"
+          controls
+          poster=""
+          autoplay
+          muted
+          loop
+          controlsList="nodownload"
+          src="./src/videos/LAND_VIDEO.mp4"
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+ 
+      <!-- RIGHT: Info -->
+      <div class="about-right">
+ 
+        <!-- Intro text -->
+        <p class="about-intro">
+          <strong>Terra Space</strong> proudly presents its first landmark project
+          <strong>"Terra Space – <span class="about-accent">Thulir</span>"</strong>
+        </p>
+ 
+        <!-- Brochure row -->
+        <div class="about-brochure-row">
+          <div class="about-brochure-name">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#e53935" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8" fill="none" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+            <div>
+              <div class="brochure-title">Terra Space Thulir</div>
+              <div class="brochure-sub">Broucher.PDF</div>
+            </div>
+          </div>
+          <a class="about-brochure-btn" href="./src/Brochure.pdf" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            View Boucher
+          </a>
+          <a class="about-brochure-btn" href="./src/Brochure.pdf" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+ 
+        <!-- Contact Us -->
+        <div class="about-contact-header">
+          <span class="about-contact-title">Contact Us</span>
+          <span class="about-contact-line"></span>
+          <span class="about-contact-dot"></span>
+        </div>
+ 
+        <div class="about-contact-body">
+          <!-- Address + Map side by side -->
+          <div class="about-contact-info">
+            <div class="about-contact-item">
+              <span class="about-ci-icon"><img src="./src/images/icon_location.svg" alt="call"></span>
+              <div>
+                <div class="about-ci-label">Address:</div>
+                <div class="about-ci-value">
+                  Terra Space Thulir,<br>
+                  Veerapanur, Pichanur<br>
+                  Coimbatore – 64105
+                </div>
+              </div>
+            </div>
+            <div class="about-contact-item">
+              <span class="about-ci-icon"><img src="./src/images/icon-call.svg" alt="call"></span>
+              <div>
+                <div class="about-ci-label">Call:</div>
+                <div class="about-ci-value">
+                  <a href="tel:+919994440423">+91-9994440423</a><br>
+                  <a href="tel:+918220363639">+91-8220363639</a>
+                </div>
+              </div>
+            </div>
+            <div class="about-contact-item">
+              <span class="about-ci-icon"><img src="./src/images/icon-mail.svg" alt="call"></span>
+              <div>
+                <div class="about-ci-label">Email:</div>
+                <div class="about-ci-value">
+                  <a href="mailto:terratechpack@gmail.com">terratechpack@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- Google Maps -->
+          <div class="about-map-wrap">
+            <iframe class="about-map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.473168861224!2d76.89031277451805!3d10.851570557804292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba843e18ecb8b7f%3A0x5a30e1a1755b44a2!2sTerra%20Space-Thulir!5e0!3m2!1sen!2sin!4v1771667467509!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+ 
+      </div>
+      <!-- /about-right -->
+    </div>
+    <!-- /about-body -->
+ 
+  </div>
+</div>
+
+ 
+
+
+
+  <script src="./script.js?v=6"></script>
+</body>
+
+</html>
