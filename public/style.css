@@ -291,7 +291,7 @@ body {
     pointer-events: none;
     z-index: 500;
     max-width: 220px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     opacity: 0;
     transform: translateY(-6px);
     transition: opacity 0.18s ease, transform 0.18s ease;

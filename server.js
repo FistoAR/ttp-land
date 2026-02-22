@@ -21,13 +21,15 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.set('trust proxy', 1);
+
 // Session store
 app.use(session({
     secret:            process.env.SESSION_SECRET || 'ttp_fallback_secret',
     resave:            false,
     saveUninitialized: false,
     cookie: {
-        secure:   process.env.NODE_ENV === 'production',
+        secure:   false,
         httpOnly: true,
         maxAge:   8 * 60 * 60 * 1000,   // 8 hours
     },
